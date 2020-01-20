@@ -159,6 +159,8 @@ class TicTacToe:
               "  1. The game is played on a grid that's 3 squares by 3 squares.\n"
               "  2. You are X, and the computer in this case is O. \n"
               "     Players take turns putting their marks in empty squares.\n"
+              "     You mark na empty square just write a char from A, B, C and\n"
+              "     a number from 1, 2 or 3, like 'B2.\n"
               "  3. The first player to get 3 of her marks in a row (up, down,\n"
               "     across, or diagonally) is the winner.\n"
               "  4. When all 9 squares are full, the game is over. If no player \n"
