@@ -23,6 +23,7 @@ class TicTacToe:
         self.refresh()
 
     def init(self):
+        '''Initilazation the Headers'''
         print('+---------------------+')
         print(f'| {self.green}*** Tic Tac Toe ***{self.endc} |')
         print('+---------------------+')
@@ -76,8 +77,8 @@ class TicTacToe:
             for hum in self.human:
                 for w in win:
                     if hum == w:
-                        n += 2
-                        if n == 6:
+                        n += 1
+                        if n == 3:
                             print(f'{self.yellow}  Human Won!{self.endc}')
                             raise SystemExit()
         # check if pc won
@@ -86,8 +87,8 @@ class TicTacToe:
             for com in self.pc:
                 for w in win:
                     if com == w:
-                        n += 2
-                        if n == 6:
+                        n += 1
+                        if n == 3:
                             print(f'{self.yellow}  Computer Won!{self.endc}')
                             raise SystemExit()
 
@@ -98,12 +99,14 @@ class TicTacToe:
         for pos in self.board:
             if pos not in self.tags:
                 left.append(pos)
+                # set the B2 position if is available
                 if 'B2' in left:
                     return 'B2'
         ply, com = '', ''
         for win in self.win_board:
             ply = set(win) - set(self.human)
             com = set(win) - set(self.pc)
+            # compare the lists and get the possibilities
             if len(com) == 1 and ''.join(com) in left:
                 return ''.join(com)
             elif len(ply) == 1 and ''.join(ply) in left:
