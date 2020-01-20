@@ -102,16 +102,18 @@ class TicTacToe:
                 # set the B2 position if is available
                 if 'B2' in left:
                     return 'B2'
+        # compare the lists and get the
+        # possibilities to win
         com = ''
         for win in self.win_board:
             com = set(win) - set(self.pc)
-            # compare the lists and get the possibilities
             if len(com) == 1 and ''.join(com) in left:
                 return ''.join(com)
+        # compare the lists and get the
+        # possibilities to defend
         ply = ''
         for win in self.win_board:
             ply = set(win) - set(self.human)
-            # compare the lists and get the possibilities
             if len(ply) == 1 and ''.join(ply) in left:
                 return ''.join(ply)
 
@@ -161,7 +163,7 @@ class TicTacToe:
 
     def help(self):
         print(f"{self.yellow}     RULES FOR TIC-TAC-TOE\n"
-               "     ---------------------\n"
+              "     ---------------------\n"
               "  1. The game is played on a grid that's 3 squares by 3 squares.\n"
               "  2. You are X, and the computer in this case is O. \n"
               "     Players take turns putting their marks in empty squares.\n"
