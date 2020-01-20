@@ -91,11 +91,15 @@ class TicTacToe:
                 left.append(pos)
                 if 'B2' in left:
                     return 'B2'
-        found = ''
+        ply, com = '', ''
         for win in self.win_board:
-            found = set(win) - set(self.human)
-            if len(found) == 1 and ''.join(found) in left:
-                return ''.join(found)
+            ply = set(win) - set(self.human)
+            com = set(win) - set(self.pc)
+            if len(ply) == 1 and ''.join(ply) in left:
+                return ''.join(ply)
+            elif len(com) == 1 and ''.join(com) in left:
+                return ''.join(com)
+
         return ''.join(random.sample(left, 1))
 
     def play(self):
