@@ -19,7 +19,16 @@ class TicTacToe:
         self.color = ''
         self.wining_board()
         self.build_board()
+        self.init()
         self.refresh()
+
+    def init(self):
+        print('+---------------------+')
+        print(f'| {self.green}*** Tic Tac Toe ***{self.endc} |')
+        print('+---------------------+')
+        print(f' Write {self.yellow}help{self.endc} for Help!')
+        print(f' Press ({self.red}Q{self.endc}/'
+              f'{self.red}q{self.endc}) for Quit\n')
 
     def build_board(self):
         '''Building board method'''
@@ -43,10 +52,10 @@ class TicTacToe:
     def refresh(self):
         '''Refreshing board method'''
         mark, n = ' ', 0
-        print(' ' * 2, f'{" " * 5}'.join(self.y))
+        print(' ' * 4, f'{" " * 5}'.join(self.y))
         for i, pos in enumerate(self.board):
             if i in (0, 3, 6):
-                print(self.x[n], end='')
+                print(' ', self.x[n], end='')
                 n += 1
             if pos in self.tags:
                 mark = pos
@@ -69,7 +78,7 @@ class TicTacToe:
                     if hum == w:
                         n += 2
                         if n == 6:
-                            print(f'{self.yellow}Human Won!{self.endc}')
+                            print(f'{self.yellow}  Human Won!{self.endc}')
                             raise SystemExit()
         # check if pc won
         for win in self.win_board:
@@ -79,7 +88,7 @@ class TicTacToe:
                     if com == w:
                         n += 2
                         if n == 6:
-                            print(f'{self.yellow}Computer Won!{self.endc}')
+                            print(f'{self.yellow}  Computer Won!{self.endc}')
                             raise SystemExit()
 
     def computer(self):
@@ -107,19 +116,19 @@ class TicTacToe:
         while True:
             tag, hum, com = '', '', ''
             if (self.player % 2) == 1:
-                raw = str(input('Human playing (Q/quit): '))
+                raw = str(input('  Human playing: '))
                 raw = raw.upper()
                 hum = raw
                 tag = self.tags[0]
                 print()
             else:
-                print('Computer playing...\n')
+                print('  Computer playing...\n')
                 raw = self.computer()
                 com = raw
                 raw = raw.upper()
                 tag = self.tags[1]
 
-            if raw in ['Q', 'q']:
+            if raw == 'Q':
                 break
 
             if raw in self.board:
@@ -129,6 +138,9 @@ class TicTacToe:
                     self.human.append(hum)
                 if com:
                     self.pc.append(com)
+            elif raw == 'HELP':
+                self.help()
+                self.player -= 1
             else:
                 print(f'{self.red}*** Play again ***{self.endc}\n')
                 self.player -= 1
@@ -138,8 +150,19 @@ class TicTacToe:
             self.player += 1
 
             if self.player == 10:
-                print(f'{self.yellow}Draw!{self.endc}')
+                print(f'{self.yellow}  Draw!{self.endc}')
                 break
+
+    def help(self):
+        print(f"{self.yellow}     RULES FOR TIC-TAC-TOE\n"
+               "     ---------------------\n"
+              "  1. The game is played on a grid that's 3 squares by 3 squares.\n"
+              "  2. You are X, and the computer in this case is O. \n"
+              "     Players take turns putting their marks in empty squares.\n"
+              "  3. The first player to get 3 of her marks in a row (up, down,\n"
+              "     across, or diagonally) is the winner.\n"
+              "  4. When all 9 squares are full, the game is over. If no player \n"
+              f"     has 3 marks in a row, the game ends in a tie.{self.endc}\n")
 
 
 if __name__ == '__main__':
