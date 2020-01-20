@@ -104,10 +104,10 @@ class TicTacToe:
         for win in self.win_board:
             ply = set(win) - set(self.human)
             com = set(win) - set(self.pc)
-            if len(ply) == 1 and ''.join(ply) in left:
-                return ''.join(ply)
-            elif len(com) == 1 and ''.join(com) in left:
+            if len(com) == 1 and ''.join(com) in left:
                 return ''.join(com)
+            elif len(ply) == 1 and ''.join(ply) in left:
+                return ''.join(ply)
 
         return ''.join(random.sample(left, 1))
 
