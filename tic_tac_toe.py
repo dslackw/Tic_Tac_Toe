@@ -102,14 +102,17 @@ class TicTacToe:
                 # set the B2 position if is available
                 if 'B2' in left:
                     return 'B2'
-        ply, com = '', ''
+        com = ''
         for win in self.win_board:
-            ply = set(win) - set(self.human)
             com = set(win) - set(self.pc)
             # compare the lists and get the possibilities
             if len(com) == 1 and ''.join(com) in left:
                 return ''.join(com)
-            elif len(ply) == 1 and ''.join(ply) in left:
+        ply = ''
+        for win in self.win_board:
+            ply = set(win) - set(self.human)
+            # compare the lists and get the possibilities
+            if len(ply) == 1 and ''.join(ply) in left:
                 return ''.join(ply)
 
         return ''.join(random.sample(left, 1))
