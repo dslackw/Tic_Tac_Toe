@@ -89,7 +89,13 @@ class TicTacToe:
         for pos in self.board:
             if pos not in self.tags:
                 left.append(pos)
-
+                if 'B2' in left:
+                    return 'B2'
+        found = ''
+        for win in self.win_board:
+            found = set(win) - set(self.human)
+            if len(found) == 1 and ''.join(found) in left:
+                return ''.join(found)
         return ''.join(random.sample(left, 1))
 
     def play(self):
