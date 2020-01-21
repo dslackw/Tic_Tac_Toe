@@ -27,9 +27,8 @@ class TicTacToe:
         print('+---------------------+')
         print(f'| {self.green}*** Tic Tac Toe ***{self.endc} |')
         print('+---------------------+')
-        print(f' Write {self.yellow}help{self.endc} for Help!')
-        print(f' Press ({self.red}Q{self.endc}/'
-              f'{self.red}q{self.endc}) for Quit\n')
+        print(f' Write {self.yellow}\help{self.endc} for Help!')
+        print(f' Press {self.red}\quit{self.endc} for Quit\n')
 
     def build_board(self):
         '''Building board method'''
@@ -126,6 +125,7 @@ class TicTacToe:
             if (self.player % 2) == 1:
                 raw = str(input('  Human playing: '))
                 raw = raw.upper()
+                raw = self.keybinds(raw)
                 hum = raw
                 tag = self.tags[0]
                 print()
@@ -136,7 +136,8 @@ class TicTacToe:
                 raw = raw.upper()
                 tag = self.tags[1]
 
-            if raw == 'Q':
+            if raw == '\QUIT':
+                print(f"{self.green}  Bye, Please don't forget me :({self.endc}\n")
                 break
 
             if raw in self.board:
@@ -146,7 +147,8 @@ class TicTacToe:
                     self.human.append(hum)
                 if com:
                     self.pc.append(com)
-            elif raw == 'HELP':
+
+            elif raw == '\HELP':
                 self.help()
                 self.player -= 1
             else:
@@ -161,6 +163,25 @@ class TicTacToe:
                 print(f'{self.yellow}  Draw!{self.endc}')
                 break
 
+    def keybinds(self, key):
+        '''Keyboard keys filter'''
+        k = key.lower()
+        keys = {
+            'q': 'A1',
+            'w': 'B1',
+            'e': 'C1',
+            'a': 'A2',
+            's': 'B2',
+            'd': 'C2',
+            'z': 'A3',
+            'x': 'B3',
+            'c': 'C3'
+        }
+        if k in keys.keys():
+            return keys[k]
+        else:
+            return key
+
     def help(self):
         print(f"{self.yellow}     RULES FOR TIC-TAC-TOE\n"
               "     ---------------------\n"
@@ -168,7 +189,8 @@ class TicTacToe:
               "  2. You are X, and the computer in this case is O. \n"
               "     Players take turns putting their marks in empty squares.\n"
               "     You mark na empty square just write a char from A, B, C and\n"
-              "     a number from 1, 2 or 3, like 'B2.\n"
+              "     a number from 1, 2 or 3, like 'B2 or use the keys:\n"
+              "     q, w, e, a, s, d, z, x and c.\n"
               "  3. The first player to get 3 of her marks in a row (up, down,\n"
               "     across, or diagonally) is the winner.\n"
               "  4. When all 9 squares are full, the game is over. If no player \n"
