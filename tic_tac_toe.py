@@ -130,7 +130,7 @@ class TicTacToe:
                 tag = self.tags[0]
                 print()
             else:
-                print('  Computer playing...\n')
+                print('  Computer playing ...\n')
                 raw = self.computer()
                 com = raw
                 raw = raw.upper()
