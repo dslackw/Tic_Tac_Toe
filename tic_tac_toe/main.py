@@ -198,8 +198,3 @@ class TicTacToe:
               "     across, or diagonally) is the winner.\n"
               "  4. When all 9 squares are full, the game is over. If no player \n"
               f"     has 3 marks in a row, the game ends in a tie.{self.endc}\n")
-
-
-if __name__ == '__main__':
-    t = TicTacToe()
-    t.play()

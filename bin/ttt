@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from tic_tac_toe.main import main
+from tic_tac_toe.main import TicTacToe
 
 if __name__ == "__main__":
-    main()
+    t = TicTacToe()
+    t.play()
