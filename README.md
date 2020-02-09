@@ -8,7 +8,7 @@ Tic-tac-toe, noughts and crosses, or Xs and Os is a paper-and-pencil game for tw
 
 ##### Installing
 
-    pip install tic_tac_toe
+    python setup.py install
 
 ##### Play
 
